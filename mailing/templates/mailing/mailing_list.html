@@ -7,22 +7,18 @@
                 <div class="card mb-4 box-shadow">
                     <div class="card-header">
                         <div class="col-12 mb-3">
-<!--                            {% if user.is_authenticated %}-->
-                            <a type="button" class="btn btn-primary" href="{% url 'catalog:product_create' object.pk %}">Добавить продукт</a>
-<!--                            {% endif %}-->
                         </div>
                         <hr>
                     </div>
                     <div class="card-body">
-                        <img class="card-img-top" height="200"
-                             src="{% mediapath object.image %}">
-                        <h1 class="card-title pricing-card-title">{{ object.price }} $</h1>
-                        <h4 class="card-title pricing-card-title">{{ object.owner|default:"-" }}</h4>
+                        <h1 class="card-title pricing-card-title">{{ object.time }}</h1>
+                        <h4 class="card-title pricing-card-title">{{ object.status|default:"-" }}</h4>
                         <p>{{ object.description | truncatechars:100 }}</p>
-                        <a href="{% url 'catalog:view_product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Buy</a>
-<!--                        {% if user.is_authenticated %}-->
-                        <a href="{% url 'catalog:product_update' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-warning">Update</a>
-<!--                        {% endif %}-->
+                        <a href="{% url 'mailing:view_mailing' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-primary">View</a>
+                        <a href="{% url 'mailing:mailing_update' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-warning">Update</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'mailing:mailing_delete' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-danger">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

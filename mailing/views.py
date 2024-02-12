@@ -24,7 +24,7 @@ def homepage(request):
 class MailingCreateView(CreateView):
     model = Mailing
     form_class = MailingForm
-    success_url = reverse_lazy('mailing:mailing')
+    success_url = reverse_lazy('mailing:list_mailing')
 
     def form_valid(self, form):
         self.object = form.save()
@@ -72,11 +72,11 @@ class MailingUpdateView(UpdateView):
         else:
             return MailingForm
 
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        if self.object.owner != self.request.user and not self.request.user.is_staff:
-            raise Http404("Вы не являетесь владельцем этого товара")
-        return self.object
+    # def get_object(self, queryset=None):
+    #     self.object = super().get_object(queryset)
+    #     if self.object.owner != self.request.user and not self.request.user.is_staff:
+    #         raise Http404("Вы не являетесь владельцем этого товара")
+    #     return self.object
 
 
 class MailingDetailView(DetailView):
@@ -85,7 +85,9 @@ class MailingDetailView(DetailView):
 
 
 class MailingDeleteView(DeleteView):
-    pass
+    model = Mailing
+    fields = '__all__'
+    success_url = reverse_lazy('mailing:list_mailing')
 
 
 class MailingListView(ListView):
@@ -96,5 +98,4 @@ class MailingListView(ListView):
 class MessageCreateView(CreateView):
     model = Message
     form_class = MessageForm
-    success_url = reverse_lazy('mailing:mailing_create')
-
+    success_url = reverse_lazy('mailing:list_mailing')

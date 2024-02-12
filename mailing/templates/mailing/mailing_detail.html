@@ -5,31 +5,25 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.time }}</h4>
                 </div>
                 <div class="card-body">
-                    <img class="card-img-top"
-                         src="{% mediapath object.image %}">
-                    <h1 class="card-title pricing-card-title">{{ object.price }} $</h1>
+                    <h1 class="card-title pricing-card-title">{{ object.periodicity }}</h1>
                     <p>{{ object.description | truncatechars:100 }}</p>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Buy</button>
                 </div>
             </div>
         </div>
         <div class="col-9">
-<!--            <div class="container">-->
-                <div class="p-4 mb-3 bg-body-tertiary rounded">
-                    <h2>Описание</h2>
-                    <p>{{ object.description }}</p>
+            <div class="p-4 mb-3 bg-body-tertiary rounded">
+                <h2>Сообщение</h2>
+            </div>
+                <div class="mb-4 me-4" align="center">
+                    <ul>
+                        <li><p>{{ object.message.title }}</p></li>
+                        <li><p>{{ object.message.body }}</p></li>
+                    </ul>
                 </div>
 
-                <h2>Комментарии</h2>
-                <ul>
-                    <li><p>{{ object.description }}</p></li>
-                    <li><p>{{ object.description }}</p></li>
-                </ul>
-
-<!--            </div>-->
         </div>
     </div>
 {% endblock %}

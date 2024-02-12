@@ -14,6 +14,9 @@ class Message(models.Model):
         verbose_name = "Сообщение"
         verbose_name_plural = "Сообщения"
 
+    def __str__(self):
+        return f'{self.title} ({self.body[:20]})'
+
 
 class Mailing(models.Model):
     time = models.DateTimeField(verbose_name="Дата рассылки")
@@ -28,6 +31,9 @@ class Mailing(models.Model):
     class Meta:
         verbose_name = "Рассылка"
         verbose_name_plural = "Рассылки"
+
+    def __str__(self):
+        return f''
 
 
 class Logs(models.Model):
@@ -47,3 +53,6 @@ class Logs(models.Model):
                 check=Q(status=False, response__isnull=False) | Q(status=True),
             )
         ]
+
+    def __str__(self):
+        return f''

@@ -11,19 +11,20 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# dot_env = os.path.join(BASE_DIR / '.env')
-# load_dotenv(dotenv_path=dot_env)
+dot_env = os.path.join(BASE_DIR / '.env')
+load_dotenv(dotenv_path=dot_env)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hbb0w8#tm1@p&(omvt&%b)v+2+s#b3rs+)llb+zy1mc3uj)f@!'
 
+SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -144,6 +145,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/users'
 
 # EMAIL
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
@@ -155,10 +157,10 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 # APSCHEDULER
 APSCHEDULER_RUN_NOW_TIMEOUT = 30
 
-CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.getenv('CACHE_LOCATION'),
-    }
-}
+# CACHE_ENABLED = os.getenv('CACHE_ENABLED') == 'True'
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#         "LOCATION": os.getenv('CACHE_LOCATION'),
+#     }
+# }
