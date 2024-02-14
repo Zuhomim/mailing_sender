@@ -11,12 +11,12 @@
                         <hr>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title">{{ object.time }}</h1>
+                        <h2 class="card-title pricing-card-title">{{ object.start_date }}</h2>
                         <h4 class="card-title pricing-card-title">{{ object.status|default:"-" }}</h4>
-                        <p>{{ object.description | truncatechars:100 }}</p>
-                        <a href="{% url 'mailing:view_mailing' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-primary">View</a>
-                        <a href="{% url 'mailing:mailing_update' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-warning">Update</a>
-                        {% if user.is_authenticated %}
+                        <p>{{ object.message | truncatechars:100 }}</p>
+                        {% if perms.mailing.set_is_active %}
+                            <a href="{% url 'mailing:view_mailing' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-primary">View</a>
+                            <a href="{% url 'mailing:mailing_update' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-warning">Update</a>
                             <a href="{% url 'mailing:mailing_delete' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-danger">Delete</a>
                         {% endif %}
                     </div>

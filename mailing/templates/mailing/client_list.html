@@ -1,0 +1,27 @@
+{% extends 'clients/base.html'%}
+{% load my_tags %}
+{% block content %}
+    <div class="row text-center">
+        {% for object in object_list %}
+            <div class="col-3">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <div class="col-12 mb-3">
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">{{ object.full_name }}</h1>
+                        <h4 class="card-title pricing-card-title">{{ object.email|default:"-" }}</h4>
+                        <p>{{ object.body | truncatechars:100 }}</p>
+                        <a href="{% url 'mailing:view_client' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-primary">View</a>
+                        <a href="{% url 'mailing:client_update' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-warning">Update</a>
+                        {% if perms.users.set_is_active %}
+                            <a href="{% url 'mailing:client_delete' object.pk %}" type="button" class="m-1 btn btn-lg btn-block btn-outline-danger">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

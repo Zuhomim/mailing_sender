@@ -1,6 +1,6 @@
 from django import forms
 
-from mailing.models import Mailing, Message
+from mailing.models import Mailing, Message, Client
 
 
 class StyleFormMixin:
@@ -13,20 +13,26 @@ class StyleFormMixin:
 class MailingForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Mailing
-        fields = '__all__'
+        fields = ('start_date', 'end_date', 'message', 'periodicity', 'status')
         widgets = {
-            'time': forms.TextInput(attrs={'type': 'datetime-local'}),
+            'start_date': forms.TextInput(attrs={'type': 'datetime-local'}),
+            'end_date': forms.TextInput(attrs={'type': 'datetime-local'}),
         }
 
 
 class MailingFormModerator(StyleFormMixin, forms.ModelForm):
-
     class Meta:
         model = Mailing
-        fields = ('time', 'periodicity', 'status',)
+        fields = ('start_date', 'end_date', 'periodicity', 'status',)
 
 
 class MessageForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Message
+        fields = '__all__'
+
+
+class ClientForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Client
         fields = '__all__'

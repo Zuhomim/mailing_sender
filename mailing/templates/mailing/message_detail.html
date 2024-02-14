@@ -1,0 +1,26 @@
+{% extends 'message/base.html'%}
+{% load my_tags %}
+{% block content %}
+    <div class="row text-center">
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object.title }}</h4>
+                </div>
+                <div class="card-body">
+<!--                    <h1 class="card-title pricing-card-title">{{ object.periodicity }}</h1>-->
+                    <p>{{ object.body | truncatechars:100 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="p-4 mb-3 bg-body-tertiary rounded">
+                <h2>Сообщение</h2>
+            </div>
+                <div class="mb-4 me-4" align="center">
+                    {{ object.body }}
+                </div>
+
+        </div>
+    </div>
+{% endblock %}
