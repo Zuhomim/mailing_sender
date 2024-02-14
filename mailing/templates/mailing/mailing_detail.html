@@ -5,10 +5,16 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ object.time }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.start_date }}</h4>
+                    <hr>
+                    <h4 class="my-0 font-weight-normal">{{ object.end_date }}</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">{{ object.periodicity }}</h1>
+                    <h2 class="card-title pricing-card-title">{{ object.periodicity }}</h2>
+                    <hr>
+                    <h4 class="card-title pricing-card-title">Active: {{ object.is_active }}</h4>
+                    <hr>
+                    <h4 class="card-title pricing-card-title">{{ object.status }}</h4>
                     <p>{{ object.description | truncatechars:100 }}</p>
                 </div>
             </div>

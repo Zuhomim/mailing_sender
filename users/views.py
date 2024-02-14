@@ -40,9 +40,7 @@ class ConfirmEmailView(View):
         user.is_active = True
         user.is_staff = True
         user.save()
-        user.is_active = True
-        user.save()
-        return render(request, 'users/registration_successful.html')
+        return render(request, 'users/registration_successfull.html')
 
 
 class ProfileView(UpdateView):
